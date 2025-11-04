@@ -1,0 +1,16 @@
+export type Role = "admin" | "instructor" | "student";
+
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  role: Role;
+  profileImage?: string;
+  bio?: string;
+}
+
+export interface AuthState {
+  user: User | null;  // Changed from just User
+  loading: boolean;
+  error: string | null;
+}
