@@ -1,0 +1,34 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    /* File Layout */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* Environment Settings */
+    // Enable native ES module support for Node.js (v18+)
+    "module": "NodeNext",              // Enables `import`/`export`
+    "moduleResolution": "NodeNext",    // Matches Node.js ESM resolution
+    "target": "ES2022",                // Modern JavaScript output
+    "lib": ["ES2022"],                 // Modern JavaScript libs
+    "types": ["node"],                 // Add Node.js types
+
+    /* Other Outputs */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    /* Stricter Typechecking Options */
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    /* Recommended Options */
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,           // Allows default imports from CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false      // Simplifies import/export syntax
+  },
+  "include": ["src"]
+}
