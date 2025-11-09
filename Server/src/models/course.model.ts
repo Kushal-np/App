@@ -43,4 +43,5 @@ const courseSchema = new Schema<ICourse>({
     timestamps: true
 })
 
-export default mongoose.model<ICourse>("Course" , courseSchema);
+const Course = mongoose.model<ICourse>("Coures" , courseSchema);
+export default Course ; 

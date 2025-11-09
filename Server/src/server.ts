@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db";
 import authRoutes from "./routes/user.route"
+import courseRoutes from "./routes/course.route"
 import cookieParser from "cookie-parser";
 import cors from "cors"
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors({
   credentials: true,               // allow cookies to be sent
 }));
 app.use("/auth" , authRoutes)
+app.use("/course" , courseRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
