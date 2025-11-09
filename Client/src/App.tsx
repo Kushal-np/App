@@ -12,6 +12,8 @@ import type { RootState } from "./store/store";
 import PublicRoute from "./components/Common/PublicRoute";
 import PageDoesntExist from "./components/Common/PageDoesntExist";
 import Signup from "./pages/authPages/Signup";
+import CourseBody from "./Body/CoursesBody";
+import GetAllCoursesPage from "./pages/CoursesPages/GetAllCoursesPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -35,10 +37,8 @@ const App = () => {
 
   return (
     <Routes>
-      {/* Public route - everyone can access */}
       <Route path="/" element={<HomePage />} />
 
-      {/* Auth routes - only for logged-out users */}
       <Route
         path="/auth"
         element={
@@ -52,7 +52,19 @@ const App = () => {
         <Route path="signup" element={<Signup />} />
       </Route>
 
-      {/* Catch-all route for 404 - MUST be last! */}
+      <Route 
+        path="/course"
+        element={
+          <ProtectedRoute>
+            <CourseBody/>
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Navigate to="/course/allCourses" replace />} />
+        <Route path="allCourses" element={<GetAllCoursesPage/>} />
+        
+      </Route>
+
       <Route path="*" element={<PageDoesntExist />} />
     </Routes>
   );

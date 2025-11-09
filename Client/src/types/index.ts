@@ -14,3 +14,14 @@ export interface AuthState {
   loading: boolean;
   error: string | null;
 }
+
+export interface Course{
+  title:string ; 
+  description: string ;
+  instructor: string ; 
+  students: string[];
+  category:string ; 
+  thumbnailUrl :string ; 
+  videourls:string ; 
+  _id:string ; 
+}
