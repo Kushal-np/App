@@ -5,7 +5,7 @@ import Navbar from "../components/Common/NavBar";
 const CourseBody = () =>{
     return(
         <div>
-            <Navbar/>
+         <Navbar/>
          <Outlet/>   
         </div>
     )

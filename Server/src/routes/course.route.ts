@@ -1,6 +1,6 @@
 import express, { Request, Response, Router } from "express"
 import { authenticate, authorize } from "../middleware/auth.middleware";
-import { courseEnrolledByMe, CoursesUploadedByMe, createCourse, deleteCourse, enrollInCourse, getAllCourses, updateCourse } from "../controllers/course.controller";
+import { courseEnrolledByMe, CoursesUploadedByMe, createCourse, deleteCourse, enrollInCourse, getAllCourses, getCoursesById, updateCourse } from "../controllers/course.controller";
 import upload from "../middleware/upload";
 const app = Router();
 
@@ -19,6 +19,7 @@ app.post("/update/:courseId", authenticate, authorize("instructor", "admin"), up
 
 app.post("/delete/:courseId", authenticate, authorize("instructor", "admin"), deleteCourse)
 app.get("/AllCourses", getAllCourses)
+app.get("/CourseDetail/:courseId" , getCoursesById);
 
 app.get("/MyCourses/:instructorId", authenticate, authorize("instructor", "admin"), CoursesUploadedByMe);
 app.get(

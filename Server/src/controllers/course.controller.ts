@@ -188,7 +188,7 @@ export const deleteCourse = async(req:Request , res:Response) =>{
 
 export const getAllCourses = async(req:Request , res:Response)=>{
     try{
-        const Courses = await Course.find();
+        const Courses = await Course.find().populate("students","name email").populate("instructor" , "name email");
         res.status(200).json({
             Courses
         })
@@ -196,6 +196,26 @@ export const getAllCourses = async(req:Request , res:Response)=>{
     catch(error){   
         res.status(400).json({
             message:"Error to get files"
+        })
+    }
+}
+
+export const getCoursesById = async(req:Request , res:Response) =>{
+    try{
+        const {courseId } = req.params ;
+        const course = await Course.findById(courseId).populate("students" , "name email profileImage").populate("instructor" , "name email profileImage")
+
+        if(!course){return res.status(404).json({
+            message:"Course not found"
+        })}
+
+        res.status(200).json({
+            course
+        })
+    }
+    catch(error){
+        res.status(400).json({
+            message:"Error fetching course"
         })
     }
 }

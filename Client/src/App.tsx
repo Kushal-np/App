@@ -14,6 +14,7 @@ import PageDoesntExist from "./components/Common/PageDoesntExist";
 import Signup from "./pages/authPages/Signup";
 import CourseBody from "./Body/CoursesBody";
 import GetAllCoursesPage from "./pages/CoursesPages/GetAllCoursesPage";
+import IndividualCourseDetailPage from "./pages/CoursesPages/InvidualCourseDetailPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,8 @@ const App = () => {
         }
       >
         <Route index element={<Navigate to="/course/allCourses" replace />} />
-        <Route path="allCourses" element={<GetAllCoursesPage/>} />
+        <Route path="allCourses" element={<GetAllCoursesPage/>} />/
+        <Route path="detail/:courseId" element={<IndividualCourseDetailPage/>} />
         
       </Route>
 

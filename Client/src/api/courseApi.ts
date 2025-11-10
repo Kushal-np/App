@@ -52,7 +52,10 @@ export const getAllCourses = async(): Promise<Course> =>{
     const res = await api.get<Course>("/AllCourses") ; 
     return res.data;
 }
-
+export const getCoursesById = async():Promise<Course> =>{
+    const res = await api.get<Course>("/CourseDetail/:courseId") ;
+    return res.data;
+}
 export const GetCoursesMadeByMe = async() :Promise<Course> =>{
     const res = await api.get<Course>("/MyCourses/:id");
     return res.data ; 

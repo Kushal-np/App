@@ -10,7 +10,7 @@ export interface User {
 }
 
 export interface AuthState {
-  user: User | null;  // Changed from just User
+  user: User | null;  
   loading: boolean;
   error: string | null;
 }
@@ -24,4 +24,11 @@ export interface Course{
   thumbnailUrl :string ; 
   videourls:string ; 
   _id:string ; 
+}
+
+export interface CourseState{
+  courses : Course[] ; 
+  selectedCourse : Course | null ; 
+  loading : boolean ; 
+  error: string | null ; 
 }
