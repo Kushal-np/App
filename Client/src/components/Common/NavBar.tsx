@@ -33,7 +33,9 @@ const Navbar = () => {
         <Link to="/" className="flex items-center">
           <span className="text-xl font-serif text-gray-900">LMS</span>
         </Link>
-
+        <Link to="/course/allCourses" className="flex items-center">
+          <span className="text-xl font-serif text-gray-900 border-b-2 border-black hover:border-gray-900">Courses</span>
+        </Link>
         <div className="flex items-center gap-6">
           {user ? (
             <>

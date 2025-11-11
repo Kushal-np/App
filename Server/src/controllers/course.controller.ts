@@ -200,6 +200,37 @@ export const getAllCourses = async(req:Request , res:Response)=>{
     }
 }
 
+export const searchCourses = async(req:Request , res:Response)=>{
+    try{
+        const {query} = req.query ; 
+        if(!query || query.toString().trim() ===""){
+            return res.status(200).json({
+                courses:[]
+            })
+        }
+
+        const courses = await Course.find({
+            $or:[
+                {title:{$regex:query , $options:'i'}},
+                {description:{$regex:query , $options:'i'}},
+                {category:{$regex:query , $options:'i'}}
+            ]
+        }).populate("instructor", "name")
+        .limit(10)
+        .select('title description category thumbnailUrl');
+
+        res.status(200).json({
+            courses
+        })
+    }   
+    catch(error){
+        res.status(400).json({
+            message:"Error searching Courses"
+        })
+    }
+}
+
+
 export const getCoursesById = async(req:Request , res:Response) =>{
     try{
         const {courseId } = req.params ;

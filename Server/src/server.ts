@@ -5,6 +5,7 @@ import authRoutes from "./routes/user.route"
 import courseRoutes from "./routes/course.route"
 import cookieParser from "cookie-parser";
 import cors from "cors"
+import profileRoutes from "./routes/profile.route"
 dotenv.config();
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(cors({
 }));
 app.use("/auth" , authRoutes)
 app.use("/course" , courseRoutes)
+app.use("/profile" , profileRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

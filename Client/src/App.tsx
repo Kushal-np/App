@@ -14,7 +14,9 @@ import PageDoesntExist from "./components/Common/PageDoesntExist";
 import Signup from "./pages/authPages/Signup";
 import CourseBody from "./Body/CoursesBody";
 import GetAllCoursesPage from "./pages/CoursesPages/GetAllCoursesPage";
-import IndividualCourseDetailPage from "./pages/CoursesPages/InvidualCourseDetailPage";
+import IndividualCourseDetailPage from "./pages/CoursesPages/IndividualCourseDetailPage";
+import ProfileBody from "./Body/ProfileBody";
+import MyProfile from "./pages/ProfilePages/MyProfile";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -53,18 +55,31 @@ const App = () => {
         <Route path="signup" element={<Signup />} />
       </Route>
 
-      <Route 
+      <Route
         path="/course"
         element={
           <ProtectedRoute>
-            <CourseBody/>
+            <CourseBody />
           </ProtectedRoute>
         }
       >
         <Route index element={<Navigate to="/course/allCourses" replace />} />
-        <Route path="allCourses" element={<GetAllCoursesPage/>} />/
-        <Route path="detail/:courseId" element={<IndividualCourseDetailPage/>} />
-        
+        <Route path="allCourses" element={<GetAllCoursesPage />} />/
+        <Route
+          path="detail/:courseId"
+          element={<IndividualCourseDetailPage />}
+        />
+      </Route>
+
+      <Route
+        path="/profile" 
+        element={
+          <ProtectedRoute>
+            <ProfileBody/>
+          </ProtectedRoute>
+        }
+      >
+        <Route path="user/me" element={<MyProfile/>}/>
       </Route>
 
       <Route path="*" element={<PageDoesntExist />} />

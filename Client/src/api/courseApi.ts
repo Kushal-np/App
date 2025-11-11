@@ -52,8 +52,8 @@ export const getAllCourses = async(): Promise<Course> =>{
     const res = await api.get<Course>("/AllCourses") ; 
     return res.data;
 }
-export const getCoursesById = async():Promise<Course> =>{
-    const res = await api.get<Course>("/CourseDetail/:courseId") ;
+export const getCoursesById = async(courseId:any):Promise<Course> =>{
+    const res = await api.get<Course>(`/CourseDetail/${courseId}`) ;
     return res.data;
 }
 export const GetCoursesMadeByMe = async() :Promise<Course> =>{
@@ -66,7 +66,12 @@ export const MyEnrolledCourses = async(): Promise<Course> =>{
     return res.data ; 
 }
 
-export const EnrollOnACourse = async():Promise<Course> =>{
-    const res = await api.post<Course>("/enrollInACourse/:id");
+export const EnrollOnACourse = async(courseId:any):Promise<Course> =>{
+    const res = await api.post<Course>(`/enrollInACourse/${courseId}`);
+    return res.data ; 
+}
+
+export const searchCourses = async(query:string) =>{
+    const res = await api.get<Course>(`/search?query=${encodeURIComponent(query)}`);
     return res.data ; 
 }
