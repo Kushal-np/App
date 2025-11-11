@@ -17,6 +17,8 @@ import GetAllCoursesPage from "./pages/CoursesPages/GetAllCoursesPage";
 import IndividualCourseDetailPage from "./pages/CoursesPages/IndividualCourseDetailPage";
 import ProfileBody from "./Body/ProfileBody";
 import MyProfile from "./pages/ProfilePages/MyProfile";
+import DashBoardBody from "./Body/DashBoardBody";
+import { InstructorDashBoard } from "./pages/DashBoard/InstructorDashboard";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -80,6 +82,17 @@ const App = () => {
         }
       >
         <Route path="user/me" element={<MyProfile/>}/>
+      </Route>
+
+      <Route
+        path="/Dashboard"
+        element={
+          <ProtectedRoute>
+            <DashBoardBody/>
+          </ProtectedRoute>
+        }
+      >
+        <Route path="Instructor/me" element={<InstructorDashBoard/>}></Route>
       </Route>
 
       <Route path="*" element={<PageDoesntExist />} />

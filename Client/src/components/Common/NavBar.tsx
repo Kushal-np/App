@@ -40,7 +40,7 @@ const Navbar = () => {
           {user ? (
             <>
               <Link
-                to="/profile"
+                to="/profile/user/me"
                 className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
               >
                 Profile

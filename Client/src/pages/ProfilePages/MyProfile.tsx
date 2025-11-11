@@ -3,15 +3,30 @@ import { getUserProfile } from "../../api/profileApi";
 import type { User } from "../../types";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyProfile = () => {
-  const userId = useSelector((state: RootState) => state.auth.user?._id);
+    const userId = useSelector((state: RootState) => state.auth.user?._id);
+
   console.log("This is", userId);
+
+  if (!userId) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mb-4"></div>
+          <p className="text-lg text-gray-600">Loading user...</p>
+        </div>
+      </div>
+    );
+  }
 
   const { data, isLoading, isError, error } = useQuery<User, Error>({
     queryKey: ["userProfile", userId],
-    queryFn: () => getUserProfile(userId!),
-    enabled: !!userId,
+    queryFn: () => getUserProfile(userId),
+    enabled: !!userId, // ✅ 
+    staleTime: 5 * 60 * 1000,
   });
 
   if (isLoading) {
@@ -25,42 +40,34 @@ const MyProfile = () => {
     );
   }
 
-  console.log("this is", data.user.name);
-
   if (isError) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center max-w-md px-4">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 mb-4">
-            <svg
-              className="w-8 h-8 text-red-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </div>
           <h2 className="text-2xl font-serif text-gray-900 mb-2">
             Error Loading Profile
           </h2>
-          <p className="text-red-600">{error?.message || "Error fetching profile"}</p>
+          <p className="text-red-600">{error?.message}</p>
         </div>
       </div>
     );
   }
 
-  const user = data?.user;
-  const createdDate = user?.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  }) : 'N/A';
+  if (!data || !data.user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <p className="text-lg text-gray-600">No profile data available</p>
+      </div>
+    );
+  }
+
+  const user = data.user;
+
+  const createdDate = new Date(user.createdAt).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -72,9 +79,17 @@ const MyProfile = () => {
           </h1>
         </div>
       </div>
-        {
-            user.role === "student" ? (<div>lol</div>):(<div className="border-black border-2 border-solid bg-black text-white p-2  inline relative left-[45%]">Go to Dashboard</div>)
-        }
+
+      {user.role === "student" ? (
+        <div>lol</div>
+      ) : (
+        <Link to={`/Dashboard/instructor/${userId}`}>
+        <div className="border-black border-2 border-solid bg-black text-white p-2 inline relative left-[45%]">
+          Go to Dashboard
+        </div>
+        </Link>
+      )}
+
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden">
@@ -149,9 +164,6 @@ const MyProfile = () => {
                 </div>
               </div>
 
-              {/* User ID */}
-
-
               {/* Member Since */}
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center">
@@ -180,9 +192,6 @@ const MyProfile = () => {
               </div>
             </div>
           </div>
-
-          {/* Actions */}
-
         </div>
       </div>
     </div>
