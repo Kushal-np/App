@@ -76,7 +76,9 @@ export const updateCourse = async (req: Request, res: Response) => {
         console.log(courseId)
         const { title, description, category } = req.body;
         const instructor = (req as any).user?.userId;
-
+        console.log("this is" , req.body)
+        console.log("This is" , req.files)
+        console.log("This is" , req.params)
         const course = await Course.findById(courseId);
 
         if (!course) {

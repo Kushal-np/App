@@ -83,7 +83,7 @@ const MyProfile = () => {
       {user.role === "student" ? (
         <div>lol</div>
       ) : (
-        <Link to={`/Dashboard/instructor/${userId}`}>
+        <Link to={`/Dashboard/instructor/me`}>
         <div className="border-black border-2 border-solid bg-black text-white p-2 inline relative left-[45%]">
           Go to Dashboard
         </div>

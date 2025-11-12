@@ -19,7 +19,8 @@ import ProfileBody from "./Body/ProfileBody";
 import MyProfile from "./pages/ProfilePages/MyProfile";
 import DashBoardBody from "./Body/DashBoardBody";
 import { InstructorDashBoard } from "./pages/DashBoard/InstructorDashboard";
-
+import CreateCourse from "./components/DashBoard/CreateCourse";
+import MyOwnCourses from "./components/DashBoard/MyOwnCourses";
 const App = () => {
   const dispatch = useDispatch();
 
@@ -92,7 +93,9 @@ const App = () => {
           </ProtectedRoute>
         }
       >
-        <Route path="Instructor/me" element={<InstructorDashBoard/>}></Route>
+        <Route path="instructor/me" element={<InstructorDashBoard/>} />
+        <Route path="instructor/me/createCourse" element={<CreateCourse/>} />
+        <Route path="instructor/me/MyCourses" element={<MyOwnCourses/>}/>
       </Route>
 
       <Route path="*" element={<PageDoesntExist />} />

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { store } from "../../store/store"
+import SidePanel from "../../components/DashBoard/SidePanel"
 
 
 
@@ -17,6 +18,7 @@ export const InstructorDashBoard = () =>{
     return(
         <div>
                 {user.name}
+                <SidePanel/>
         </div>
     )
 }

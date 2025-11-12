@@ -11,7 +11,7 @@ app.post("/create", authenticate, authorize("instructor", "admin"), upload.field
 
 
 
-app.post("/update/:courseId", authenticate, authorize("instructor", "admin"), upload.fields([
+app.put("/update/:courseId", authenticate, authorize("instructor", "admin"), upload.fields([
     { name: 'thumbnail', maxCount: 1 },
     { name: 'mediaFiles', maxCount: 10 }
 ]), updateCourse);
