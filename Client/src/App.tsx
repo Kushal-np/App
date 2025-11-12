@@ -18,7 +18,6 @@ import IndividualCourseDetailPage from "./pages/CoursesPages/IndividualCourseDet
 import ProfileBody from "./Body/ProfileBody";
 import MyProfile from "./pages/ProfilePages/MyProfile";
 import DashBoardBody from "./Body/DashBoardBody";
-import { InstructorDashBoard } from "./pages/DashBoard/InstructorDashboard";
 import CreateCourse from "./components/DashBoard/CreateCourse";
 import MyOwnCourses from "./components/DashBoard/MyOwnCourses";
 const App = () => {
@@ -93,7 +92,6 @@ const App = () => {
           </ProtectedRoute>
         }
       >
-        <Route path="instructor/me" element={<InstructorDashBoard/>} />
         <Route path="instructor/me/createCourse" element={<CreateCourse/>} />
         <Route path="instructor/me/MyCourses" element={<MyOwnCourses/>}/>
       </Route>
