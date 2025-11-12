@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav className="bg-white border-b border-gray-100">
       <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <span className="text-xl font-serif text-gray-900">LMS</span>
+          <span className="text-xl font-serif text-gray-900">LEARNY</span>
         </Link>
         <Link to="/course/allCourses" className="flex items-center">
           <span className="text-xl font-serif text-gray-900 border-b-2 border-black hover:border-gray-900">Courses</span>
