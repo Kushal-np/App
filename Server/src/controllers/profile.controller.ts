@@ -3,7 +3,7 @@ import User from "../models/user.model";
 import { AuthRequest } from "../middleware/auth.middleware";
 
 export const getUserProfile: RequestHandler = async (req, res) => {
-  const authReq = req as AuthRequest; // cast to access req.user
+  const authReq = req as AuthRequest; 
   const userId = req.params.id;
 
   try {

@@ -25,7 +25,7 @@ app.get("/MyCourses/:instructorId", authenticate, authorize("instructor", "admin
 app.get(
     "/my-courses",
     authenticate,
-    authorize("student", "instructor", "admin"), // optional: restrict if needed
+    authorize("student", "instructor", "admin"), 
     courseEnrolledByMe
 );
 

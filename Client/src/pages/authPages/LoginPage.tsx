@@ -19,7 +19,7 @@ const LoginPage = () => {
         navigate("/", { replace: true });
       }, 50);
     },
-    onError: (err: any) => console.error(err.response?.data || err.message),
+    onError: (err: any) => console.error(err.response?.data || err.message, "Error" ),
   });
   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

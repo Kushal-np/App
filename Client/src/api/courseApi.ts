@@ -83,6 +83,7 @@ export const deletePost = async (id: string): Promise<void> => {
 export const getAllCourses = async (): Promise<CreateCourseResponse[]> => {
   const res = await api.get<CreateCourseResponse[]>("/AllCourses");
   return res.data;
+  console.log(res.data)
 };
 
 // Get course by ID
